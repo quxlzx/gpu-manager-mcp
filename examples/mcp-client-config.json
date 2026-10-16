@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "gpu-manager": {
+      "command": "/path/to/gpu-manager-mcp/.venv/bin/gpu-manager-mcp",
+      "args": ["stdio"],
+      "env": {
+        "GPU_MANAGER_SAMPLE_INTERVAL": "2",
+        "GPU_MANAGER_HISTORY_RETENTION_HOURS": "24"
+      }
+    }
+  }
+}

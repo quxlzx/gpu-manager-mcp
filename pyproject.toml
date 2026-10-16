@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gpu-manager-mcp"
+version = "0.1.0rc1"
+description = "Read-only cross-platform GPU monitoring and AI-workload planning over the Model Context Protocol"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Laynce H. Lim" }]
+keywords = ["mcp", "gpu", "monitoring", "nvidia", "amd", "intel", "llm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Hardware",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "mcp>=2.0,<3",
+    "pydantic>=2.5",
+]
+
+[project.optional-dependencies]
+nvidia = ["nvidia-ml-py>=12.535"]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.6",
+    "mypy>=1.8",
+    "build>=1",
+]
+
+[project.urls]
+Homepage = "https://github.com/quxlzx/gpu-manager-mcp"
+Issues = "https://github.com/quxlzx/gpu-manager-mcp/issues"
+
+[project.scripts]
+gpu-manager-mcp = "gpu_manager_mcp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gpu_manager_mcp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,6 @@
+# Hermes Agent configuration snippet — merge into ~/.hermes/config.yaml
+mcp_servers:
+  gpu-manager:
+    command: /path/to/gpu-manager-mcp/.venv/bin/gpu-manager-mcp
+    args: ["stdio"]
+    timeout: 60
