@@ -81,3 +81,4 @@ class GpuSnapshot(BaseModel):
     power_watts: MetricValue
     clock_mhz: MetricValue
     fan_percent: MetricValue | None = None
+    fan_rpm: MetricValue | None = None
