@@ -228,7 +228,7 @@ class AmdSysfsBackend(GPUBackend):
             temperature_celsius=temp,
             power_watts=power,
             clock_mhz=clock,
-            fan_percent=fan,
+            fan_rpm=fan,
         )
 
     # -- processes (rocm-smi fallback) --------------------------------------

@@ -39,6 +39,11 @@ def test_snapshot_values_and_units(backend):
     assert snap.power_watts.value == pytest.approx(75.5)
     assert snap.clock_mhz.value == pytest.approx(1620.0)
     assert snap.memory.free_bytes.value == 8 * 1024**3 - 1 * 1024**3
+    assert snap.fan_rpm is not None
+    assert snap.fan_rpm.available
+    assert snap.fan_rpm.value == 1200
+    assert snap.fan_rpm.unit == "rpm"
+    assert snap.fan_percent is None
 
 
 def test_empty_sensor_reported_unavailable_not_zero(backend):

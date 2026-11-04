@@ -49,6 +49,7 @@ def make_amd_card(
             "temp1_input": "55000",
             "power1_average": "75500000",
             "freq1_input": "1620000000",
+            "fan1_input": "1200",
         }
     )
     hwmon_dir = dev / "hwmon" / "hwmon3"
