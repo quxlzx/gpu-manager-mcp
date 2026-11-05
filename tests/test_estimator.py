@@ -20,6 +20,21 @@ def test_quantization_scales_weights():
         assert other.weights_gib == pytest.approx(base.weights_gib * factor, rel=0.02)
 
 
+@pytest.mark.parametrize(
+    "quantization, expected_weights_gib, fits",
+    [("f32", 26.08, False), ("bf16", 13.04, True)],
+)
+def test_full_precision_weights_and_fit(quantization, expected_weights_gib, fits):
+    est = estimate_fit(7, quantization, 4096, 1, "qwen2-7b", 16 * GIB, 16 * GIB)
+    assert est.weights_gib == pytest.approx(expected_weights_gib, abs=0.01)
+    assert est.fits is fits
+    assert not any("unknown quantization" in warning for warning in est.warnings)
+
+
+def test_bf16_matches_f16():
+    assert estimate_fit(7, "bf16") == estimate_fit(7, "f16")
+
+
 def test_context_length_scales_kv():
     a = estimate_fit(8, "q4", 4096, 1, "llama-3-8b")
     b = estimate_fit(8, "q4", 8192, 1, "llama-3-8b")

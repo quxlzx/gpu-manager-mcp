@@ -14,7 +14,9 @@ GIB = 1024**3
 
 #: bytes per parameter by weight quantization
 BYTES_PER_PARAM = {
+    "f32": 4.0,
     "f16": 2.0,
+    "bf16": 2.0,
     "f8": 1.0,
     "q8": 1.0,
     "q6": 0.75,
